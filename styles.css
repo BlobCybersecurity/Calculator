@@ -1,0 +1,45 @@
+/* * {
+    outline: solid red;
+} */
+
+.top {
+    outline: solid red;
+    display: flex;
+    justify-content: center;
+}
+
+.display {
+    display: flex;
+    outline: solid red;
+    width: 300px;
+    justify-content: flex-end;
+}
+
+.screen {
+    width: 120px;
+    height: 30px;
+}
+
+/* .main {
+    outline: solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 auto;
+} */
+
+/* .digits {
+    display: flex;
+    flex: 1;
+} */
+
+/* .operands {
+    display: flex;
+    justify-content: center;
+} */
+
+/* .operands {
+    outline: solid red;
+} */

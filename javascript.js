@@ -82,21 +82,19 @@ display.addEventListener("click", (object) => {
     if (inputTracker.length === 3) {
         
         // console.log("got here")
-        if (inputTracker[0] === "2"  && inputTracker[1] === "+" && inputTracker[2] === "3") {
+     
             
             let result = operate(inputTracker[1], inputTracker[0], inputTracker[2])
             
             // console.log(result)
             equalsbutton.addEventListener("click", () => {
-                calculatorScreen.textContent = result
+            // calculatorScreen.textContent = result
                 // console.log(String(inputTracker[1]))
             })
             inputTracker = []
             inputTracker[0] = result
             console.log(inputTracker)
-        } else {
-            inputTracker = []
-        }
+    
     }
    
 })

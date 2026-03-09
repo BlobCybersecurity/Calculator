@@ -66,8 +66,10 @@ function operate(operator, num1, num2) {
    } else if (operator === "-") {
         let resultofSubtract = subtract(Number(num1), Number(num2))
         return resultofSubtract
+   } else if (operator === "/") {
+        let resultOfDivide = divide(Number(num1), Number(num2)) 
+        return resultOfDivide
    }
-   
 }
 
 const display = document.querySelector(".display")

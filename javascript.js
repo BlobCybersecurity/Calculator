@@ -4,6 +4,8 @@ const equalsbutton = document.querySelector(".equals")
 const display = document.querySelector(".display")
 let inputTracker = []
 let operaterEnabled = false
+let finalTracker = ""
+let finaltracker2 = ""
 
 let tracker2 = ""
 let clear = document.querySelector(".clear")
@@ -52,6 +54,7 @@ function operate(operator, num1, num2) {
 
 
 display.addEventListener("click", (number) => {
+    
     if (!operandsContainer.contains(number.target)) {
         tracker += number.target.textContent
         calculatorScreen.textContent = tracker
@@ -60,6 +63,7 @@ display.addEventListener("click", (number) => {
     if (operandsContainer.contains(number.target)) {
         console.log(operaterEnabled)
         operaterEnabled = true
+        finalTracker = tracker
         operator = number.target.textContent
         
         calculatorScreen.textContent += operator // fix this later
@@ -68,11 +72,6 @@ display.addEventListener("click", (number) => {
     
 })
 
-if (operaterEnabled === true) {
-    console.log("reaced here")
-    operaterEnabled = false
-    
-}
 
 threes.addEventListener("click", (numb) => {
     if (operaterEnabled === true) {
@@ -84,7 +83,7 @@ threes.addEventListener("click", (numb) => {
 
 equalsbutton.addEventListener("click", () => {
     operaterEnabled = false
-    inputTracker[0] = tracker
+    inputTracker[0] = finalTracker
     inputTracker[1] = operator
     inputTracker[2] = tracker2
     console.log(inputTracker)

@@ -6,6 +6,7 @@ let inputTracker = []
 let operaterEnabled = false
 let finalTracker = ""
 let finaltracker2 = ""
+let resultedofOperation = false
 
 let tracker2 = ""
 let clear = document.querySelector(".clear")
@@ -85,7 +86,7 @@ display.addEventListener("click", (number) => {
         tracker = ""
         operaterEnabled = true
         operator = number.target.textContent
-        calculatorScreen.textContent = `${finalTracker} ${operator}`
+        calculatorScreen.textContent += `${finalTracker} ${operator}`
     }
 
     if (operaterEnabled === true && inputTracker.length === 1 && !operandsContainer.contains(number.target)) {
@@ -93,13 +94,17 @@ display.addEventListener("click", (number) => {
     }
 
     if (number.target.textContent === "=" && operaterEnabled === true && inputTracker.length === 1) {
-        inputTracker[1] = operator
+        inputTracker[1] = operator 
         inputTracker[2] = tracker2
         finaltracker2 = tracker2
         tracker2 = ""
         operaterEnabled = false
-        calculatorScreen.textContent = `${finalTracker} ${operator} ${finaltracker2}`
+        calculatorScreen.textContent += `${finalTracker} ${operator} ${finaltracker2}`
         operator = ""
+
+        let resultOfOperation = operate(inputTracker[1], inputTracker[0], inputTracker[2])
+        calculatorScreen.textContent = `${resultOfOperation}`
+        console.log(resultOfOperation)
     } 
     // else {
     //     clearr()

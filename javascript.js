@@ -83,20 +83,20 @@ clear.addEventListener("click", () => {
 display.addEventListener("click", (number) => {
     
     
-    if (!operandsContainer.contains(number.target)) {
+    if (!operandsContainer.contains(number.target) && canTracker1 === true) {
         console.log("yes")
-        if (canTracker1 === true) {
-            tracker += number.target.textContent
-        }
+        
+        tracker += number.target.textContent
+        
         inputTracker[0] = tracker
 
         calculatorScreen.textContent = `${inputTracker[0]}`
        
         firsted = true
-        canTracker1 = false
     }
 
     if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=" && inputTracker.length === 1) {
+        canTracker1 = false
         console.log("yesoperater")
         // finaltracker = tracker
        

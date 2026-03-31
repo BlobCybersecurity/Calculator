@@ -23,6 +23,8 @@ let tracker = ""
 let operandsContainer = document.querySelector(".operands-container")
 
 function clearr() {
+    operaterEnabled = false
+    firsted = false
     tracker = ""
     tracker2 = ""
     inputTracker = []
@@ -72,16 +74,15 @@ function operate(operator, num1, num2) {
 
 
 
-clear.addEventListener("click", () => {
-    console.log("cleared")
-    clearr()
-})
+
 
 
 
 
 display.addEventListener("click", (number) => {
-    
+    if (number.target.textContent === "clear") {
+        clearr()
+    }
     
     if (!operandsContainer.contains(number.target) && canTracker1 === true) {
         console.log("yes")
@@ -95,7 +96,7 @@ display.addEventListener("click", (number) => {
         firsted = true
     }
 
-    if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=" && inputTracker.length === 1) {
+    if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=") {
         canTracker1 = false
         console.log("yesoperater")
         // finaltracker = tracker
@@ -127,13 +128,14 @@ display.addEventListener("click", (number) => {
         operator = ""
         let resultOfOperation = operate(inputTracker[1], inputTracker[0], inputTracker[2])
         inputTracker = []
+        inputTracker[0] = resultOfOperation
         tracker = String(resultOfOperation)
         canTracker1 = true
         calculatorScreen.textContent = `${resultOfOperation}`
         console.log(resultOfOperation) // If equals then, else if it is any operation excluding clear and equals, then still perform the operation 
     }
 
-    if (operandsContainer.contains(number.target) && firsted === true && operaterEnabled === true && number.target.textContent != "=" && inputTracker.length === 3) {
+    if (operandsContainer.contains(number.target) && firsted === true && operaterEnabled === true && number.target.textContent != "=" && inputTracker.length === 3 && number.target.textContent != "clear") {
         canTracker2 = true
         operaterEnabled = true
         readyForEquals = false
@@ -142,7 +144,7 @@ display.addEventListener("click", (number) => {
         switchedtoSecond = true
         tracker = String(tempResult)
         tracker2 = ""
-        inputTracker = []
+        inputTracker = [] 
         inputTracker[0] = String(tempResult)
         inputTracker[1] = number.target.textContent
         calculatorScreen.textContent = `${tempResult} ${number.target.textContent}`

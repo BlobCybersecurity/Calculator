@@ -17,6 +17,8 @@ let operatorOnSwitch = ""
 let canPperator = false
 let equalsTracker = false
 let canSecondNum = false
+let operaterWasDivision = false
+let lastWasZero = false
 
 
 let tracker2 = ""
@@ -34,6 +36,8 @@ function clearr() {
     operator = ""
     canTracker1 = true
     canTracker2 = false
+    operaterWasDivision === false
+    lastWasZero = false
 }
 
 
@@ -108,6 +112,10 @@ display.addEventListener("click", (number) => {
         
         // finaltracker = tracker
         operator = number.target.textContent
+
+        if (operator === "/") {
+            operaterWasDivision = true
+        }
         inputTracker[1] = operator
         calculatorScreen.textContent = `${inputTracker[0]} ${inputTracker[1]}`
         
@@ -128,22 +136,31 @@ display.addEventListener("click", (number) => {
         inputTracker[2] = tracker2
         calculatorScreen.textContent = `${inputTracker[0]} ${inputTracker[1]} ${inputTracker[2]}`
         readyForEquals = true
+        if (tracker2 === "0") {
+            lastWasZero = true
+        }
        
     }
 
     if (number.target.textContent === "=" && readyForEquals === true) {
-       
-        firsted = false
-        tracker2 = ""
-        operator = ""
-        let resultOfOperation = operate(inputTracker[1], inputTracker[0], inputTracker[2])
-        inputTracker = []
-        inputTracker[0] = resultOfOperation
-        tracker = String(resultOfOperation)
-        canTracker1 = true
-        equalsTracker = true
-        calculatorScreen.textContent = `${resultOfOperation}`
-        console.log(resultOfOperation) // If equals then, else if it is any operation excluding clear and equals, then still perform the operation 
+        if (operaterWasDivision === true && lastWasZero === true) {
+            clearr()
+            calculatorScreen.textContent = `ERROR TRIED TO DIVIDE WITH ZERO`
+            
+        } else {
+                 firsted = false
+                tracker2 = ""
+                operator = ""
+                let resultOfOperation = operate(inputTracker[1], inputTracker[0], inputTracker[2])
+                inputTracker = []
+                inputTracker[0] = resultOfOperation
+                tracker = String(resultOfOperation)
+                canTracker1 = true
+                equalsTracker = true
+                calculatorScreen.textContent = `${resultOfOperation}`
+                console.log(resultOfOperation)
+        }
+        // If equals then, else if it is any operation excluding clear and equals, then still perform the operation 
     }
 
     if (equalsTracker === true && !operandsContainer.contains(number.target)) {

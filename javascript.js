@@ -15,6 +15,9 @@ let canTracker1 = true
 let canTracker2 = false
 let operatorOnSwitch = ""
 let canPperator = false
+let equalsTracker = false
+let canSecondNum = false
+
 
 let tracker2 = ""
 let clear = document.querySelector(".clear")
@@ -23,7 +26,6 @@ let tracker = ""
 let operandsContainer = document.querySelector(".operands-container")
 
 function clearr() {
-    operaterEnabled = false
     firsted = false
     tracker = ""
     tracker2 = ""
@@ -85,6 +87,7 @@ display.addEventListener("click", (number) => {
     }
     
     if (!operandsContainer.contains(number.target) && canTracker1 === true) {
+        equalsTracker = false
         console.log("yes")
         
         tracker += number.target.textContent
@@ -97,33 +100,40 @@ display.addEventListener("click", (number) => {
     }
 
     if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=") {
+         equalsTracker = false
+         firsted = true
         canTracker1 = false
+        canTracker2 = true
         console.log("yesoperater")
+        
         // finaltracker = tracker
-       
-        operaterEnabled = true
         operator = number.target.textContent
         inputTracker[1] = operator
         calculatorScreen.textContent = `${inputTracker[0]} ${inputTracker[1]}`
+        
+        
     }
 
-    if (operaterEnabled === true && !operandsContainer.contains(number.target) && firsted === true) {
+    if (!operandsContainer.contains(number.target) && firsted === true && canTracker2 === true) {
+         equalsTracker = false
        
         console.log("yesthirdnum")
-        canTracker2 = true
+        
         tracker2Tracker = true
         // tracker2 += number.target.textContent
-        if (canTracker2 === true) {
-             tracker2 += number.target.textContent
-        }
+        
+        tracker2 += number.target.textContent
+        
        
         inputTracker[2] = tracker2
         calculatorScreen.textContent = `${inputTracker[0]} ${inputTracker[1]} ${inputTracker[2]}`
         readyForEquals = true
-        canTracker2 = false
+       
     }
 
-    if (number.target.textContent === "=" && operaterEnabled === true) {
+    if (number.target.textContent === "=" && readyForEquals === true) {
+       
+        firsted = false
         tracker2 = ""
         operator = ""
         let resultOfOperation = operate(inputTracker[1], inputTracker[0], inputTracker[2])
@@ -131,13 +141,31 @@ display.addEventListener("click", (number) => {
         inputTracker[0] = resultOfOperation
         tracker = String(resultOfOperation)
         canTracker1 = true
+        equalsTracker = true
         calculatorScreen.textContent = `${resultOfOperation}`
         console.log(resultOfOperation) // If equals then, else if it is any operation excluding clear and equals, then still perform the operation 
     }
 
-    if (operandsContainer.contains(number.target) && firsted === true && operaterEnabled === true && number.target.textContent != "=" && inputTracker.length === 3 && number.target.textContent != "clear") {
-        canTracker2 = true
-        operaterEnabled = true
+    if (equalsTracker === true && !operandsContainer.contains(number.target)) {
+        equalsTracker = false
+        clearr()
+        tracker += number.target.textContent
+        inputTracker[0] = tracker
+        calculatorScreen.textContent = `${inputTracker[0]}`
+        firsted = true
+
+
+    }
+
+    // if (equalsTracker === true && !operandsContainer.contains(number.target)) {
+    //     equalsTracker = false
+    //     inputTracker[0] = number.target.textContent
+
+
+    // }
+
+    if (operandsContainer.contains(number.target) && firsted === true && number.target.textContent != "=" && inputTracker.length === 3 && number.target.textContent != "clear") {
+        
         readyForEquals = false
         console.log("switched")
         let tempResult = operate(inputTracker[1], inputTracker[0], inputTracker[2])
@@ -184,7 +212,7 @@ display.addEventListener("click", (number) => {
 
        
 
-
+// work on stuff that broke
 
 
 

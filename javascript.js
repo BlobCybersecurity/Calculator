@@ -73,11 +73,12 @@ display.addEventListener("click", (number) => {
         clearr()
     }
     
-    if (!operandsContainer.contains(number.target) && canTracker1 === true && equalsTracker === false) {
+    if (!operandsContainer.contains(number.target) && canTracker1 === true && equalsTracker === false && number.target.className != "digits-container" && number.target.className != "display" && number.target.className != "three-1" && number.target.className != "three-2" && number.target.className != "three-3"&& number.target.className != "num-0" && number.target.className != "screen" && number.target.className != "screen") {
+        
         equalsTracker = false
         console.log("yes")
         
-        tracker += number.target.textContent
+        tracker += number.target.className
         
         inputTracker[0] = tracker
 
@@ -86,7 +87,7 @@ display.addEventListener("click", (number) => {
         firsted = true
     }
 
-    if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=" && firsted === true) {
+    if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=" && firsted === true && number.target.className != "digits-container" && number.target.className != "display" && number.target.className != "three-1" && number.target.className != "three-2" && number.target.className != "three-3"&& number.target.className != "num-0" && number.target.className != "screen") {
          equalsTracker = false
          firsted = true
         canTracker1 = false
@@ -105,7 +106,7 @@ display.addEventListener("click", (number) => {
         
     }
 
-    if (!operandsContainer.contains(number.target) && firsted === true && canTracker2 === true) {
+    if (!operandsContainer.contains(number.target) && firsted === true && canTracker2 === true && number.target.className != "digits-container" && number.target.className != "display" && number.target.className != "three-1" && number.target.className != "three-2" && number.target.className != "three-3"&& number.target.className != "num-0") {
          equalsTracker = false
        
         console.log("yesthirdnum")
@@ -125,7 +126,7 @@ display.addEventListener("click", (number) => {
        
     }
 
-    if (number.target.textContent === "=" && readyForEquals === true) {
+    if (number.target.textContent === "=" && readyForEquals === true && number.target.className != "digits-container" && number.target.className != "display" && number.target.className != "three-1" && number.target.className != "three-2" && number.target.className != "three-3"&& number.target.className != "num-0") {
         if (operaterWasDivision === true && lastWasZero === true) {
             clearr()
             calculatorScreen.textContent = `ERROR TRIED TO DIVIDE WITH ZERO`
@@ -146,7 +147,7 @@ display.addEventListener("click", (number) => {
         
     }
 
-    if (equalsTracker === true && !operandsContainer.contains(number.target)) {
+    if (equalsTracker === true && !operandsContainer.contains(number.target) && number.target.className != "digits-container" && number.target.className != "display" && number.target.className != "three-1" && number.target.className != "three-2" && number.target.className != "three-3"&& number.target.className != "num-0" && number.target.className != "screen") {
         console.log("special")
         equalsTracker = false
         clearr()
@@ -160,7 +161,7 @@ display.addEventListener("click", (number) => {
 
     
 
-    if (operandsContainer.contains(number.target) && firsted === true && number.target.textContent != "=" && inputTracker.length === 3 && number.target.textContent != "clear") {
+    if (operandsContainer.contains(number.target) && firsted === true && number.target.textContent != "=" && inputTracker.length === 3 && number.target.textContent != "clear" && number.target.className != "digits-container" && number.target.className != "display" && number.target.className != "three-1" && number.target.className != "three-2" && number.target.className != "three-3"&& number.target.className != "num-0" && number.target.className != "screen") {
         
         readyForEquals = false
         console.log("switched")
@@ -181,7 +182,6 @@ display.addEventListener("click", (number) => {
 
 
  
-
 
 
 

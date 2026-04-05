@@ -1,22 +1,12 @@
 let operator = undefined
-let indexTracker = 0
 const equalsbutton = document.querySelector(".equals")
 const display = document.querySelector(".display")
 let inputTracker = []
-let operaterEnabled = false
-let finalTracker = ""
-let finaltracker2 = ""
-let resultedofOperation = false
-let tracker2Tracker = false
 let readyForEquals = false
-let switchedtoSecond = false
 let firsted = false
 let canTracker1 = true
 let canTracker2 = false
-let operatorOnSwitch = ""
-let canPperator = false
 let equalsTracker = false
-let canSecondNum = false
 let operaterWasDivision = false
 let lastWasZero = false
 
@@ -78,13 +68,6 @@ function operate(operator, num1, num2) {
    }
 }
 
-
-
-
-
-
-
-
 display.addEventListener("click", (number) => {
     if (number.target.textContent === "clear") {
         clearr()
@@ -103,14 +86,14 @@ display.addEventListener("click", (number) => {
         firsted = true
     }
 
-    if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=") {
+    if (operandsContainer.contains(number.target) && number.target.textContent != "clear" && number.target.textContent != "=" && firsted === true) {
          equalsTracker = false
          firsted = true
         canTracker1 = false
         canTracker2 = true
         console.log("yesoperater")
         
-        // finaltracker = tracker
+       
         operator = number.target.textContent
 
         if (operator === "/") {
@@ -127,8 +110,8 @@ display.addEventListener("click", (number) => {
        
         console.log("yesthirdnum")
         
-        tracker2Tracker = true
-        // tracker2 += number.target.textContent
+       
+        
         
         tracker2 += number.target.textContent
         
@@ -160,7 +143,7 @@ display.addEventListener("click", (number) => {
                 calculatorScreen.textContent = `${resultOfOperation}`
                 console.log(resultOfOperation)
         }
-        // If equals then, else if it is any operation excluding clear and equals, then still perform the operation 
+        
     }
 
     if (equalsTracker === true && !operandsContainer.contains(number.target)) {
@@ -175,19 +158,14 @@ display.addEventListener("click", (number) => {
 
     }
 
-    // if (equalsTracker === true && !operandsContainer.contains(number.target)) {
-    //     equalsTracker = false
-    //     inputTracker[0] = number.target.textContent
-
-
-    // }
+    
 
     if (operandsContainer.contains(number.target) && firsted === true && number.target.textContent != "=" && inputTracker.length === 3 && number.target.textContent != "clear") {
         
         readyForEquals = false
         console.log("switched")
         let tempResult = operate(inputTracker[1], inputTracker[0], inputTracker[2])
-        switchedtoSecond = true
+     
         tracker = String(tempResult)
         tracker2 = ""
         inputTracker = [] 
@@ -195,42 +173,9 @@ display.addEventListener("click", (number) => {
         inputTracker[1] = number.target.textContent
         calculatorScreen.textContent = `${tempResult} ${number.target.textContent}`
     }
-    // else {
-    //     clearr()
-    //     console.log("failed")
-    // }
-
-
-
-
-
-
-    // threes.addEventListener("click", (numb) => {
-    //     if (operaterEnabled === true) {
-    //         console.log("reached here")
-    //         tracker2 += numb.target.textContent
-    //     }
-       
-    // })
+   
 })
-// problem is that when i press clear, for some reason it is picking up the threes event listener instead of the display
 
-
-// equalsbutton.addEventListener("click", () => {
-//     operaterEnabled = false
-//     inputTracker[0] = finalTracker
-//     inputTracker[1] = operator
-//     inputTracker[2] = tracker2
-//     console.log(inputTracker)
-// })
-
-
-// && !number.target.textContent === "clear" && !number.target.textContent === "="
-
-
-       
-
-// work on stuff that broke
 
 
 
